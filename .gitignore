@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+*.tlog
+*.log
+*.pdb
+*.ilk
+*.user
+*.idb
+x64/Debug/Test33.exe.recipe
+x64/Debug/Test33.vcxproj.FileListAbsolute.txt
