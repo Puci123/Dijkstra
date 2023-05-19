@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿#include<fstream>
+#include<iostream>
 #include<chrono>
 
 
@@ -15,7 +16,7 @@
 #define MAX_EDGE_WEIGHT 100;
 
 
-
+const char* FILEPATH = "TimeComplexity.csv";
 
 //return: first -> distncies to vertceis; scond -> previeus verecies
 std::pair<int*,int*> dijkstra(int start, Graph* graph, PriorityQueue* queue)
@@ -163,28 +164,40 @@ void Benchmark(PriorityQueue* queue, Graph* graph, double &timeOut, UINT16 &memO
 	timeOut = (stop - start) * 0.001;
 }
 
+void WriteToFile(std::string name, int size, double value) 
+{
+	std::ofstream file;
+	file.open(FILEPATH, std::ios::app);
+	file << name << ";" << size << ";" << value << "\n";
+	file.close();
+}
+
 void BenchMarkGraphType(Graph* graph, std::string name) 
 {
 	double time;
 	UINT16 mem = 0;
 
-	/*PriorityQueue* queue = new Heap(graph->NumberOfVertecies());
+	PriorityQueue* queue = new Heap(graph->NumberOfVertecies());
 
 	std::cout << std::endl << name <<" + heap" << " curent size : " << graph->NumberOfVertecies();
 	Benchmark(queue, graph, time, mem);
 	std::cout << " exec time: " << time << "ms";
+	WriteToFile(name + "_heap", graph->NumberOfVertecies(), time);
 
 	delete queue;
 	queue = new PriorityQueueArray(graph->NumberOfVertecies());
 	std::cout << std::endl << name <<" + array" << " curent size : " << graph->NumberOfVertecies();
 	Benchmark(queue, graph, time, mem);
-	std::cout << " exec time: " << time << "ms";*/
+	std::cout << " exec time: " << time << "ms";
+	WriteToFile(name + "_array", graph->NumberOfVertecies(), time);
 
-	//delete queue;
-	PriorityQueue* queue = new LinqedListQueue();
+
+	delete queue;
+	queue = new LinqedListQueue();
 	std::cout << std::endl << name << " + list" << " curent size : " << graph->NumberOfVertecies();
 	Benchmark(queue, graph, time, mem);
 	std::cout << " exec time: " << time << "ms";
+	WriteToFile(name + "_list", graph->NumberOfVertecies(), time);
 	delete queue;
 }
 
@@ -194,12 +207,20 @@ int main()
 	int seed = 0;
 	float density = 0.75;
 
-	for (int i = 5; i < 10000; i+= 10)
+	std::ofstream file;
+	file.open(FILEPATH,std::ios::ate);
+	file << "Name;size;time[ms];\n";
+	file.close();
+
+
+	for (int i = 5; i < 15; i+= 5)
 	{
 
 		for (int j = 0; j < samplePerType; j++)
 		{
 			seed = i * samplePerType + j;
+			srand(seed);
+			density = ((float)(rand() % 101)) / 101;
 
 			AdjacencyMatrix* graph1 = new AdjacencyMatrix(i);
 			populetGraph((Graph*)graph1,density, seed);
@@ -222,23 +243,6 @@ int main()
 			delete graph4;
 		}
 	}
-
-	/*LinqedListQueue* queue = new LinqedListQueue();
-	queue->Insert(Node{ 0,10 });
-	queue->Insert(Node{ 0,11 });
-	queue->Insert(Node{ 1,15 });
-	queue->Insert(Node{ 0,4 });
-	queue->Insert(Node{ 0,5 });
-	queue->Insert(Node{ 0,3 });
-
-	queue->ContatinsKey(1);
-	queue->DecreasKey(1, 5);
-
-	while (!queue->IsEmpty())
-	{
-		std::cout << queue->ExtractMin().weight << std::endl;
-	}*/
-
 }
 
  
