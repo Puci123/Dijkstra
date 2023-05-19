@@ -9,8 +9,10 @@ class Heap : public PriorityQueue
 		Node* _heap;
 		int _capacity;
 		int _heap_size;
+		Node** helpTable;
 
 		void Heapify(int);
+		void Swap(Node* x, Node* y);
 		int parent(int i) { return i >> 1; }
 		int left(int i) { return i << 1; }
 		int right(int i) { return (i << 1) + 1; }

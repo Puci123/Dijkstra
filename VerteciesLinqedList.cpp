@@ -16,6 +16,7 @@ VerteciesLinqedList::~VerteciesLinqedList()
 		node = node->nextNode;
 		delete temp;
 	}
+
 }
 
 

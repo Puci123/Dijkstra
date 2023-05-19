@@ -38,3 +38,15 @@
 *.idb
 x64/Debug/Test33.exe.recipe
 x64/Debug/Test33.vcxproj.FileListAbsolute.txt
+*.vsidx
+*.lock
+.vs/Dijkstra/v17/.wsuo
+*.db
+*.json
+*.sqlite
+.vs/Test33/v17/.suo
+*.db-shm
+*.db-wal
+*.opendb
+*.ipch
+*.recipe

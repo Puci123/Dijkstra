@@ -9,6 +9,7 @@
 #include "PriorityQueueArray.h"
 #include "Heap.h"
 #include "FiboHeap.h"
+#include "LinqedListQueue.h"
 #include "Node.h"
 
 #define MAX_EDGE_WEIGHT 100;
@@ -167,18 +168,23 @@ void BenchMarkGraphType(Graph* graph, std::string name)
 	double time;
 	UINT16 mem = 0;
 
-	PriorityQueue* queue = new Heap(graph->NumberOfVertecies());
+	/*PriorityQueue* queue = new Heap(graph->NumberOfVertecies());
 
-	std::cout << std::endl << name <<" + heap" << "curent size : " << graph->NumberOfVertecies();
+	std::cout << std::endl << name <<" + heap" << " curent size : " << graph->NumberOfVertecies();
 	Benchmark(queue, graph, time, mem);
 	std::cout << " exec time: " << time << "ms";
 
 	delete queue;
 	queue = new PriorityQueueArray(graph->NumberOfVertecies());
-	std::cout << std::endl << name <<" + array" << "curent size : " << graph->NumberOfVertecies();
+	std::cout << std::endl << name <<" + array" << " curent size : " << graph->NumberOfVertecies();
+	Benchmark(queue, graph, time, mem);
+	std::cout << " exec time: " << time << "ms";*/
+
+	//delete queue;
+	PriorityQueue* queue = new LinqedListQueue();
+	std::cout << std::endl << name << " + list" << " curent size : " << graph->NumberOfVertecies();
 	Benchmark(queue, graph, time, mem);
 	std::cout << " exec time: " << time << "ms";
-
 	delete queue;
 }
 
@@ -188,7 +194,7 @@ int main()
 	int seed = 0;
 	float density = 0.75;
 
-	for (int i = 50; i < 10000; i+= 10)
+	for (int i = 5; i < 10000; i+= 10)
 	{
 
 		for (int j = 0; j < samplePerType; j++)
@@ -197,32 +203,41 @@ int main()
 
 			AdjacencyMatrix* graph1 = new AdjacencyMatrix(i);
 			populetGraph((Graph*)graph1,density, seed);
-
 			BenchMarkGraphType(graph1, "AdjacencyMatrix");
-
 			delete graph1;
 
 			AdjcencyList* graph2 = new AdjcencyList(i);
 			populetGraph((Graph*)graph2, density, seed);
 			BenchMarkGraphType((Graph*)graph2, "AdjacencyList");
-
 			delete graph2;
 
 			EdgeList* graph3 = new EdgeList(i);
 			populetGraph((Graph*)graph3, density, seed);
 			BenchMarkGraphType((Graph*)graph3, "EdgeList");
-
 			delete graph3;
 
 			IncidenceMatrix* graph4 = new IncidenceMatrix(i);
 			populetGraph((Graph*)graph4, density, seed);
 			BenchMarkGraphType((Graph*)graph4, "IncidenceMatrix");
-
 			delete graph4;
 		}
 	}
 
-	
+	/*LinqedListQueue* queue = new LinqedListQueue();
+	queue->Insert(Node{ 0,10 });
+	queue->Insert(Node{ 0,11 });
+	queue->Insert(Node{ 1,15 });
+	queue->Insert(Node{ 0,4 });
+	queue->Insert(Node{ 0,5 });
+	queue->Insert(Node{ 0,3 });
+
+	queue->ContatinsKey(1);
+	queue->DecreasKey(1, 5);
+
+	while (!queue->IsEmpty())
+	{
+		std::cout << queue->ExtractMin().weight << std::endl;
+	}*/
 
 }
 

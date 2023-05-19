@@ -134,6 +134,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="IncidenceMatrix.h" />
+    <ClInclude Include="LinqedListQueue.h" />
     <ClInclude Include="MemoryInfo.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PriorityQueue.h" />
@@ -148,6 +149,7 @@
     <ClCompile Include="FiboHeap.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="IncidenceMatrix.cpp" />
+    <ClCompile Include="LinqedListQueue.cpp" />
     <ClCompile Include="PriorityQueueArray.cpp" />
     <ClCompile Include="VerteciesLinqedList.cpp" />
   </ItemGroup>

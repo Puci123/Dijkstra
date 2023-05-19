@@ -13,72 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Graphs">
+      <UniqueIdentifier>{c2c48379-910c-400f-a193-6821d629e17d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Queues">
+      <UniqueIdentifier>{b7fb595b-95f8-4d7b-80ad-38e45f9d03ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Graphs">
+      <UniqueIdentifier>{3a3983b0-87a4-4099-9588-296c3b662934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Queus">
+      <UniqueIdentifier>{2c631251-579c-46cb-8903-350ceffaaad8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Heap.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="IncidenceMatrix.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="PriorityQueue.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="FiboHeap.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="VerteciesLinqedList.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="AdjcencyList.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="EdgeList.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="PriorityQueueArray.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="MemoryInfo.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="AdjacencyMatrix.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="AdjcencyList.h">
+      <Filter>Pliki nagłówkowe\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="EdgeList.h">
+      <Filter>Pliki nagłówkowe\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Pliki nagłówkowe\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="IncidenceMatrix.h">
+      <Filter>Pliki nagłówkowe\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="FiboHeap.h">
+      <Filter>Pliki nagłówkowe\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>Pliki nagłówkowe\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue.h">
+      <Filter>Pliki nagłówkowe\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueueArray.h">
+      <Filter>Pliki nagłówkowe\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="LinqedListQueue.h">
+      <Filter>Pliki nagłówkowe\Queues</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dijktstra.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Heap.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="IncidenceMatrix.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="PriorityQueueArray.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="FiboHeap.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="VerteciesLinqedList.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="AdjacencyMatrix.cpp">
+      <Filter>Pliki źródłowe\Graphs</Filter>
+    </ClCompile>
     <ClCompile Include="AdjcencyList.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Graphs</Filter>
     </ClCompile>
     <ClCompile Include="EdgeList.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Graphs</Filter>
     </ClCompile>
-    <ClCompile Include="AdjacencyMatrix.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="IncidenceMatrix.cpp">
+      <Filter>Pliki źródłowe\Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="FiboHeap.cpp">
+      <Filter>Pliki źródłowe\Queus</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>Pliki źródłowe\Queus</Filter>
+    </ClCompile>
+    <ClCompile Include="PriorityQueueArray.cpp">
+      <Filter>Pliki źródłowe\Queus</Filter>
+    </ClCompile>
+    <ClCompile Include="LinqedListQueue.cpp">
+      <Filter>Pliki źródłowe\Queus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

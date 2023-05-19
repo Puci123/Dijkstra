@@ -2,9 +2,13 @@
 
 
 
-void swap(Node* x, Node* y)
+void Heap::Swap(Node* x, Node* y)
 {
 	Node temp = *x;
+	
+	helpTable[x->id] = y;
+	helpTable[y->id] = x;
+	
 	*x = *y;
 	*y = temp;
 }
@@ -13,12 +17,14 @@ Heap::Heap(int cap)
 {
 	_heap_size = 0;
 	_capacity = cap + 1;
+	helpTable = new Node * [_capacity] {nullptr};
 	_heap = new Node[_capacity];
 }
 
 Heap::~Heap()
 {
 	delete[] _heap;
+	delete[] helpTable;
 }
 
 void Heap::Insert(Node k)
@@ -26,9 +32,11 @@ void Heap::Insert(Node k)
 	int i = ++_heap_size;
 	_heap[i] = k;
 
+	helpTable[k.id] = &_heap[i];
+
 	while (i > 1 && _heap[parent(i)].weight > _heap[i].weight)
 	{
-		swap(&_heap[i], &_heap[parent(i)]);
+		Swap(&_heap[i], &_heap[parent(i)]);
 		i = parent(i);
 	}
 }
@@ -61,7 +69,7 @@ void Heap::Heapify(int i)
 		smallest = r;
 	if (smallest != i)
 	{
-		swap(&_heap[i], &_heap[smallest]);
+		Swap(&_heap[i], &_heap[smallest]);
 		Heapify(smallest);
 	}
 }
@@ -73,20 +81,17 @@ bool Heap::IsEmpty()
 
 int Heap::ContatinsKey(int key) 
 {
-	for (int i = 1; i < _heap_size + 1; i++)
-	{
-		if (_heap[i].id == key) return i;
-	}
+	if (helpTable[key] != nullptr) return key;
 
 	return -1;
 }
 
 void Heap::DecreasKey(int i,int newValue) 
 {
-	_heap[i].weight = newValue;
+	helpTable[i]->weight = newValue;
 	while (i > 1 && _heap[parent(i)].weight > _heap[i].weight)
 	{
-		swap(&_heap[i], &_heap[parent(i)]);
+		Swap(&_heap[i], &_heap[parent(i)]);
 		i = parent(i);
 
 	}
