@@ -1,9 +1,10 @@
 #include "AdjcencyList.h"
 
-AdjcencyList::AdjcencyList(int numberOfVertecies) 
+AdjcencyList::AdjcencyList(int numberOfVertecies, int** values)
 {
 	this->numberOfVertecies = numberOfVertecies;
 	adjecnyList = new VerteciesLinqedList[numberOfVertecies];
+	Construct(numberOfVertecies,values);
 }
 
 AdjcencyList::~AdjcencyList() 

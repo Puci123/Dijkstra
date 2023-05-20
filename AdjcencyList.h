@@ -6,7 +6,7 @@
 class AdjcencyList : Graph
 {
 	public:
-		 AdjcencyList(int numberOfVertecies);
+		 AdjcencyList(int numberOfVertecies, int** values);
 		 ~AdjcencyList();
 		 void PrintGraph() override;
 		 void AddEdge(int a, int b, int weight) override;

@@ -17,6 +17,7 @@
 
 
 const char* FILEPATH = "TimeComplexity.csv";
+const bool WRITETOFILE = false;
 
 //return: first -> distncies to vertceis; scond -> previeus verecies
 std::pair<int*,int*> dijkstra(int start, Graph* graph, PriorityQueue* queue)
@@ -100,24 +101,21 @@ int* shotestPath(int start,int finish, Graph* graph, PriorityQueue* queue)
 	return path;
 }
 
-void populetGraph(Graph* graph, float density, int seed) 
+void populetGraph(int size, float density, int seed, int &edgeHandle,int ***memHandel) 
 {
 	srand(seed);
-	
-	int connectionPerVertex = (int)(density * graph->NumberOfVertecies());
-	int** temp = new int* [graph->NumberOfVertecies()];
+	int** temp = *memHandel;
 
-	for (int i = 0; i < graph->NumberOfVertecies(); i++)
+	for (int i = 0; i < size; i++)
 	{
-		temp[i] = new int[graph->NumberOfVertecies()];
-
-		for (int j = 0; j < graph->NumberOfVertecies(); j++)
+		for (int j = 0; j < size; j++)
 		{
 			float edgeFactor = ((float)(rand() % 101)) / 100;
 
 			if (edgeFactor < density && j != i)
 			{
 				temp[i][j] = rand() % MAX_EDGE_WEIGHT;
+				edgeHandle++;
 			}
 			else
 			{
@@ -125,28 +123,6 @@ void populetGraph(Graph* graph, float density, int seed)
 			}
 		}
 	}
-
-	int tak = -1;
-
-	for (int i = 0; i < graph->NumberOfVertecies(); i++)
-	{
-		for (int j = 0; j < graph->NumberOfVertecies(); j++)
-		{
-			if (temp[i][j] != -1)
-				graph->AddEdge(i, j, temp[i][j]);
-		}
-	}
-	
-	int nie = -1;
-
-
-	for (int i = 0; i < graph->NumberOfVertecies(); i++)
-	{
-		delete[] temp[i];
-	}
-
-	delete[] temp;
-	
 }
 
 
@@ -166,10 +142,13 @@ void Benchmark(PriorityQueue* queue, Graph* graph, double &timeOut, UINT16 &memO
 
 void WriteToFile(std::string name, int size, double value) 
 {
-	std::ofstream file;
-	file.open(FILEPATH, std::ios::app);
-	file << name << ";" << size << ";" << value << "\n";
-	file.close();
+	if (WRITETOFILE)
+	{
+		std::ofstream file;
+		file.open(FILEPATH, std::ios::app);
+		file << name << ";" << size << ";" << value << "\n";
+		file.close();
+	}
 }
 
 void BenchMarkGraphType(Graph* graph, std::string name) 
@@ -207,14 +186,23 @@ int main()
 	int seed = 0;
 	float density = 0.75;
 
-	std::ofstream file;
-	file.open(FILEPATH,std::ios::ate);
-	file << "Name;size;time[ms];\n";
-	file.close();
-
-
-	for (int i = 5; i < 15; i+= 5)
+	if (WRITETOFILE)
 	{
+		std::ofstream file;
+		file.open(FILEPATH, std::ios::ate);
+		file << "Name;size;time[ms];\n";
+		file.close();
+	}
+
+	for (int i = 8; i < 513; i += 8)
+	{
+
+		int** data = new int* [i];
+		for (int k = 0; k < i; k++)
+		{
+			data[k] = new int[i];
+		}
+
 
 		for (int j = 0; j < samplePerType; j++)
 		{
@@ -222,26 +210,37 @@ int main()
 			srand(seed);
 			density = ((float)(rand() % 101)) / 101;
 
-			AdjacencyMatrix* graph1 = new AdjacencyMatrix(i);
-			populetGraph((Graph*)graph1,density, seed);
+			int edges = 0;
+
+			
+
+
+			populetGraph(i, density, seed, edges,&data);
+
+			AdjacencyMatrix* graph1 = new AdjacencyMatrix(i,data);
 			BenchMarkGraphType(graph1, "AdjacencyMatrix");
 			delete graph1;
 
-			AdjcencyList* graph2 = new AdjcencyList(i);
-			populetGraph((Graph*)graph2, density, seed);
+			AdjcencyList* graph2 = new AdjcencyList(i,data);
 			BenchMarkGraphType((Graph*)graph2, "AdjacencyList");
 			delete graph2;
 
-			EdgeList* graph3 = new EdgeList(i);
-			populetGraph((Graph*)graph3, density, seed);
+			EdgeList* graph3 = new EdgeList(i,data);
 			BenchMarkGraphType((Graph*)graph3, "EdgeList");
 			delete graph3;
 
-			IncidenceMatrix* graph4 = new IncidenceMatrix(i);
-			populetGraph((Graph*)graph4, density, seed);
+			IncidenceMatrix* graph4 = new IncidenceMatrix(i,edges,data);
 			BenchMarkGraphType((Graph*)graph4, "IncidenceMatrix");
 			delete graph4;
+
 		}
+
+		for (int k = 0; k < i; k++)
+		{
+			delete[] data[k];
+
+		}
+		delete[] data;
 	}
 }
 

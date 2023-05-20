@@ -15,7 +15,7 @@ struct EdgeLinqedListNode
 class EdgeList : Graph
 {
 	public:
-		EdgeList(int numberOfVertecies);
+		EdgeList(int numberOfVertecies, int** values);
 		~EdgeList();
 		void PrintGraph();
 		void AddEdge(int a, int b, int weight) override;

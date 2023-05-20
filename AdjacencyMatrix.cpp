@@ -1,6 +1,6 @@
 #include "AdjacencyMatrix.h"
 
-AdjacencyMatrix::AdjacencyMatrix(int numberOfVertecies)
+AdjacencyMatrix::AdjacencyMatrix(int numberOfVertecies, int** values)
 {
 	_numberOfVertecies = numberOfVertecies;
 	_neighbourMatrix = new int*[_numberOfVertecies];
@@ -10,9 +10,10 @@ AdjacencyMatrix::AdjacencyMatrix(int numberOfVertecies)
 		_neighbourMatrix[i] = new int[_numberOfVertecies];
 		for (int j = 0; j < _numberOfVertecies; j++)
 		{
-			_neighbourMatrix[i][j] = -1;
+			_neighbourMatrix[i][j] = values[i][j];
 		}
 	}
+
 }
 
 AdjacencyMatrix::~AdjacencyMatrix()

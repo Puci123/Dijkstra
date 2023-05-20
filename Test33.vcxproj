@@ -147,6 +147,7 @@
     <ClCompile Include="dijktstra.cpp" />
     <ClCompile Include="EdgeList.cpp" />
     <ClCompile Include="FiboHeap.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="IncidenceMatrix.cpp" />
     <ClCompile Include="LinqedListQueue.cpp" />

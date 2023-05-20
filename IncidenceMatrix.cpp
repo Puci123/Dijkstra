@@ -3,17 +3,25 @@
 
 
 
-IncidenceMatrix::IncidenceMatrix(int numberOfVertecies) 
+IncidenceMatrix::IncidenceMatrix(int numberOfVertecies, int edgeCount, int** values) 
 {
-	_edgeCount = 0;
+	_edgeCount = edgeCount;
 	_numberOfVertecies = numberOfVertecies;
+
+	_incidenceMatrix = new int* [_edgeCount];
+	for (int i = 0; i < _edgeCount; i++)
+	{
+		_incidenceMatrix[i] = new int[numberOfVertecies];
+	}
+
+	Construct(numberOfVertecies, values);
+
 }
 
 IncidenceMatrix::~IncidenceMatrix() 
 {
 	for (int i = 0; i < _edgeCount; i++)
 	{
-		_incidenceMatrix[i] = new int[_numberOfVertecies];
 		delete[] _incidenceMatrix[i];
 	}
 
@@ -22,36 +30,12 @@ IncidenceMatrix::~IncidenceMatrix()
 
 void IncidenceMatrix::AddEdge(int a, int b, int weight) 
 {
-	_edgeCount++;
-	int** newTab = new int* [_edgeCount];
-
-	for (int i = 0; i < _edgeCount - 1; i++)
+	if (currentEdege < _edgeCount)
 	{
-		newTab[i] = new int[NumberOfVertecies()];
-		for ( int j = 0; j < NumberOfVertecies(); j++)
-		{
-			newTab[i][j] = _incidenceMatrix[i][j];
-		}
+		_incidenceMatrix[currentEdege][a] = weight;
+		_incidenceMatrix[currentEdege][b] = -weight;
+		currentEdege++;
 	}
-
-	newTab[_edgeCount - 1] = new int[NumberOfVertecies()];
-	for (int j = 0; j < NumberOfVertecies(); j++)
-	{
-		newTab[_edgeCount - 1][j] = 0;
-	}
-
-	int** temp = _incidenceMatrix;
-	_incidenceMatrix = newTab;
-	_incidenceMatrix[_edgeCount - 1][a] = weight;
-	_incidenceMatrix[_edgeCount - 1][b] = -weight;
-
-	for (int i = 0; i < _edgeCount - 1; i++)
-	{
-		delete[] temp[i];
-	}
-
-	delete[] temp;
-
 }
 
 int IncidenceMatrix::NumberOfVertecies()

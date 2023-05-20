@@ -98,5 +98,11 @@
     <ClCompile Include="LinqedListQueue.cpp">
       <Filter>Pliki źródłowe\Queus</Filter>
     </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Pliki źródłowe\Graphs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TimeComplexity.csv" />
   </ItemGroup>
 </Project>

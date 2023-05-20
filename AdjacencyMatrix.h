@@ -10,7 +10,7 @@ class AdjacencyMatrix : public Graph
 		int _numberOfVertecies =-1;
 
 	public:
-			AdjacencyMatrix(int numberOfVertecies);
+			AdjacencyMatrix(int numberOfVertecies, int** values);
 			~AdjacencyMatrix();
 
 			void PrintGraph();

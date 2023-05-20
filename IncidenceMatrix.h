@@ -9,9 +9,11 @@ class IncidenceMatrix : Graph
 		int** _incidenceMatrix;
 		int _numberOfVertecies = -1;
 		int _edgeCount = 0;
+		int size = 4;
+		int currentEdege = 0;
 
 	public:
-		IncidenceMatrix(int numberOfVertecies);
+		IncidenceMatrix(int numberOfVertecies, int edgeCount, int** values);
 		~IncidenceMatrix();
 
 		void PrintGraph();

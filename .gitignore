@@ -51,3 +51,7 @@ x64/Debug/Test33.vcxproj.FileListAbsolute.txt
 *.ipch
 *.recipe
 *.csv
+*.ipdb
+*.ipdb
+*.iobj
+*.iobj

@@ -1,11 +1,13 @@
 #include "EdgeList.h"
 
 
-EdgeList::EdgeList(int numberOfVertecies)
+EdgeList::EdgeList(int numberOfVertecies, int** values)
 {
 	this->numberOfVerteices = numberOfVertecies;
 	header = new EdgeLinqedListNode{ -1,-1, -1,nullptr };
 	count = 0;
+
+	Construct(numberOfVertecies, values);
 }
 
 EdgeList::~EdgeList() 
